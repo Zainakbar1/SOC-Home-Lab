@@ -1,0 +1,3 @@
+index=sysmon DestinationPort=445
+| table _time SourceIp DestinationIp User Image
+| sort - _time

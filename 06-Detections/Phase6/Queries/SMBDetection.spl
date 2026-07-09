@@ -1,0 +1,3 @@
+index=sysmon EventCode=3 DestinationPort=445
+| stats count values(Image) values(User) values(DestinationIp) by SourceIp
+| sort - count

@@ -1,0 +1,4 @@
+index=sysmon EventCode=3
+| stats dc(DestinationPort) as UniquePorts values(DestinationPort) as Ports by SourceIp
+| where UniquePorts > 10
+| sort - UniquePorts

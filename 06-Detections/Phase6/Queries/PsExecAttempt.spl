@@ -1,0 +1,4 @@
+index=sysmon
+(Image="*PSEXESVC*" OR ParentImage="*services.exe*")
+| table _time Computer User Image ParentImage CommandLine
+| sort - _time

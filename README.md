@@ -1,225 +1,352 @@
-Architecture
-                 INTERNET
-                     │
-             VMware NAT Network
-                     │
-      ┌──────────────┼───────────────┐
-      │              │               │
-      │              │               │
- Ubuntu SOC      Kali Linux      Windows 11
- 10.10.10.10     10.10.10.20      10.10.10.30
-      │              │               │
-      └────── Host Only SOC Network ─┘
+# 🛡️ SOC Home Lab - Attack & Defense Simulation
 
-Ubuntu
---------
-Splunk Enterprise
-SSH Server
-Syslog Server
-Universal Forwarder Management
+![Platform](https://img.shields.io/badge/Platform-VMware_Workstation_Pro-blue)
+![OS](https://img.shields.io/badge/OS-Windows_11_|_Ubuntu_|_Kali-success)
+![Splunk](https://img.shields.io/badge/SIEM-Splunk_Enterprise-orange)
+![Status](https://img.shields.io/badge/Project-84%25_Complete-brightgreen)
+![License](https://img.shields.io/badge/License-MIT-blue)
 
-Windows
----------
-Sysmon
-Splunk Universal Forwarder
+---
 
-Kali
--------
-Nmap
-Metasploit
-Burp Suite
-Hydra
-Gobuster
-Impacket
-Project Folder Structure
+# Overview
+
+This project is a production-inspired Security Operations Center (SOC) Home Lab built using VMware Workstation Pro. It simulates real-world enterprise attack and defense scenarios while focusing on:
+
+- Blue Team Operations
+- Detection Engineering
+- Threat Hunting
+- Incident Response
+- Digital Forensics
+- MITRE ATT&CK Mapping
+- Splunk Enterprise Administration
+- Windows Endpoint Monitoring
+- Sysmon Telemetry
+- Attack Simulation
+
+The goal is to create a complete SOC analyst portfolio demonstrating both offensive security techniques and defensive monitoring.
+
+---
+
+# Current Project Status
+
+| Phase | Status |
+|---------|--------|
+| Phase 0 – Infrastructure | ✅ Complete |
+| Phase 1 – Network Configuration | ✅ Complete |
+| Phase 2 – Splunk Enterprise | ✅ Complete |
+| Phase 3 – Windows Logging & Sysmon | ✅ Complete |
+| Phase 4 – Kali Linux | ✅ Complete |
+| Phase 5 – Log Validation | ✅ Complete |
+| Phase 6 – Reconnaissance & SMB Enumeration | ✅ Complete |
+| Phase 7 – Credential Access & Remote Execution | 🚧 In Progress |
+| Phase 8 – Persistence & Privilege Escalation | ⏳ Planned |
+| Phase 9 – Detection Engineering & Threat Hunting | ⏳ Planned |
+| Phase 10 – Incident Response & Final Portfolio | ⏳ Planned |
+
+**Overall Progress:** **84%**
+
+---
+
+# Lab Architecture
+
+```
+                        INTERNET
+                            │
+                    VMware NAT Network
+                            │
+          ┌─────────────────┼─────────────────┐
+          │                 │                 │
+          │                 │                 │
+     Ubuntu SOC        Kali Linux        Windows 11
+     10.10.10.10       10.10.10.20       10.10.10.30
+          │                 │                 │
+          └──────── Host-Only SOC Network ───┘
+```
+
+---
+
+# Virtual Machines
+
+## Ubuntu SOC Server
+
+- Ubuntu 26.04 LTS
+- Splunk Enterprise
+- SSH Server
+- Syslog Server
+- Deployment Server
+- Receiving Indexer
+
+---
+
+## Windows 11 Endpoint
+
+- Sysmon
+- Splunk Universal Forwarder
+- Windows Event Logging
+- Endpoint Telemetry
+
+---
+
+## Kali Linux
+
+Offensive Security Platform containing:
+
+- Nmap
+- NetExec
+- Impacket
+- Hydra
+- Metasploit Framework
+- Burp Suite
+- Gobuster
+- SMB Client
+
+---
+
+# VMware Specifications
+
+## Ubuntu SOC
+
+| Setting | Value |
+|----------|-------|
+| Name | Ubuntu-SOC |
+| vCPU | 4 |
+| RAM | 12 GB |
+| Disk | 80 GB |
+| Network | NAT + Host Only |
+| Firmware | UEFI |
+
+---
+
+## Windows 11
+
+| Setting | Value |
+|----------|-------|
+| vCPU | 4 |
+| RAM | 8 GB |
+| Disk | 80 GB |
+| Network | NAT + Host Only |
+
+---
+
+## Kali Linux
+
+| Setting | Value |
+|----------|-------|
+| vCPU | 4 |
+| RAM | 8 GB |
+| Disk | 40 GB |
+| Network | NAT + Host Only |
+
+---
+
+# Network Plan
+
+| Machine | NAT | SOC Network |
+|----------|-----|-------------|
+| Ubuntu SOC | DHCP | 10.10.10.10/24 |
+| Kali Linux | DHCP | 10.10.10.20/24 |
+| Windows 11 | DHCP | 10.10.10.30/24 |
+
+Host-only Network:
+
+```
+10.10.10.0/24
+```
+
+Gateway:
+
+```
+None
+```
+
+DNS:
+
+```
+None
+```
+
+The host-only network isolates attack traffic while allowing controlled communication between lab machines.
+
+---
+
+# Project Structure
+
+```
 SOC-LAB/
-
 │
 ├── 00-Documentation
 │   ├── README.md
 │   ├── Network_Diagram.drawio
 │   ├── IP_Addressing.xlsx
-│   ├── Screenshots
-│   │
 │   ├── Phase0
 │   ├── Phase1
 │   ├── Phase2
-│   └── Phase3
+│   ├── Phase3
+│   ├── Phase4
+│   ├── Phase5
+│   ├── Phase6
+│   └── Screenshots
 │
 ├── 01-ISO
-│   ├── ubuntu-26.04.iso
-│   ├── kali-linux.iso
-│   ├── windows11.iso
-│   └── VMwareTools
-│
 ├── 02-VMs
-│   ├── Ubuntu-SOC
-│   ├── Kali
-│   └── Windows11
-│
 ├── 03-Splunk
 │   ├── Enterprise
 │   ├── Apps
-│   ├── Forwarders
 │   ├── Configurations
-│   └── Dashboards
+│   ├── Dashboards
+│   └── Forwarders
 │
 ├── 04-Sysmon
-│
 ├── 05-Attacks
-│
 ├── 06-Detections
-│
 ├── 07-Incident-Reports
-│
 ├── 08-PCAP
-│
 ├── 09-Tools
-│
+├── 10-MITRE
 └── Snapshots
-Phase Roadmap
+```
 
-We won't rush.
+---
 
-Phase 0
-──────────────
-✔ VMware Installation
-✔ Download ISOs
-✔ Create VM Folder Structure
-✔ Create Networks
-✔ Create Ubuntu VM
+# Implemented Features
 
-Phase 1
-──────────────
-Ubuntu Installation
-Networking
-SSH
-Updates
-Snapshots
+## Infrastructure
 
-Phase 2
-──────────────
-Install Splunk
-Create Indexes
-Create Users
-Receive Logs
+- VMware Workstation Pro
+- Multi-VM Enterprise Network
+- Static Host-Only Network
+- Snapshot Strategy
 
-Phase 3
-──────────────
-Windows Installation
-Sysmon
-Forwarder
+## Splunk
 
-Phase 4
-──────────────
-Kali Installation
+- Splunk Enterprise
+- Custom Indexes
+- Receiving Indexer
+- Deployment Server
+- Windows TA
+- Sysmon TA
+- Dashboards
 
-Phase 5
-──────────────
-Attack Simulation
+## Endpoint Monitoring
 
-Phase 6
-──────────────
-Detection Engineering
+- Sysmon
+- Windows Event Logs
+- Universal Forwarder
+- Network Telemetry
+- Process Monitoring
 
-Phase 7
-──────────────
-Threat Hunting
+## Attack Simulations
 
-Phase 8
-──────────────
-Incident Response
+- Host Discovery
+- TCP SYN Scan
+- Service Enumeration
+- OS Detection
+- SMB Enumeration
+- SMB Authentication
+- Share Enumeration
+- Administrative Access Validation
+- PsExec Remote Execution Attempt
 
-Phase 9
-──────────────
-Portfolio Documentation
-VMware VM Specifications
-Ubuntu (SOC Server)
-Setting	Value
-Name	Ubuntu-SOC
-Compatibility	Latest VMware Version
-Guest OS	Ubuntu 64-bit
-Firmware	UEFI
-CPU	4 vCPU
-RAM	12 GB
-Disk	80 GB NVMe
-Network Adapter 1	NAT
-Network Adapter 2	Host Only
-USB	USB 3.1
-Sound	Disabled
-Printer	Disabled
-Kali
-Setting	Value
-CPU	4 vCPU
-RAM	8 GB
-Disk	40 GB
-Adapter 1	NAT
-Adapter 2	Host Only
-Windows 11
-Setting	Value
-CPU	4 vCPU
-RAM	8 GB
-Disk	80 GB
-Adapter 1	NAT
-Adapter 2	Host Only
+## Detection Engineering
 
-Total RAM allocated while all VMs are running: 28 GB, leaving about 12 GB for your Windows host, which is a comfortable balance.
+- Host Discovery Detection
+- Port Scan Detection
+- SMB Detection
+- SMB Authentication Detection
+- Administrative Share Detection
+- PsExec Detection
+- Network Connection Detection
 
-Network Plan
-Machine	NAT	SOC Network
-Ubuntu	DHCP	10.10.10.10/24
-Kali	DHCP	10.10.10.20/24
-Windows	DHCP	10.10.10.30/24
+## Incident Response
 
-Host-only network:
+- IR-001 – Nmap Reconnaissance
+- IR-002 – SMB Enumeration
 
-10.10.10.0/24
+## MITRE ATT&CK Mapping
 
-Gateway:
+- T1018 – Remote System Discovery
+- T1046 – Network Service Discovery
+- T1135 – Network Share Discovery
+- T1078 – Valid Accounts
+- T1021.002 – SMB/Windows Admin Shares
+- T1569.002 – Service Execution
 
-None
+---
 
-DNS:
+# Snapshot Strategy
 
-None
+| Snapshot | Description |
+|-----------|-------------|
+| Ubuntu SS1 | Fresh Installation |
+| Ubuntu SS2 | Network Configuration |
+| Ubuntu SS3 | Splunk + Sysmon Configuration |
+| Windows SS1 | Base Installation |
+| Windows SS2 | Network Configuration |
+| Windows SS3 | Universal Forwarder + Sysmon |
+| Kali SS1 | Fresh Installation |
+| Kali SS2 | Network Configuration |
 
-This isolated network keeps attack traffic contained within the lab.
+Snapshots are created before major configuration changes to provide reliable rollback points.
 
-Snapshot Strategy
+---
 
-We'll create a VMware snapshot after every major milestone:
+# Documentation
 
-Snapshot 01
-Fresh Install
+Every phase includes:
 
-Snapshot 02
-Ubuntu Updated
+- Detailed README
+- Commands Executed
+- Technical Explanations
+- Screenshots
+- Detection Queries
+- MITRE Mapping
+- Incident Reports
+- Lessons Learned
 
-Snapshot 03
-Splunk Installed
+---
 
-Snapshot 04
-Windows Installed
+# Technologies Used
 
-Snapshot 05
-Sysmon Configured
+- VMware Workstation Pro
+- Ubuntu Server/Desktop
+- Windows 11
+- Kali Linux
+- Splunk Enterprise
+- Sysmon
+- Splunk Universal Forwarder
+- Nmap
+- NetExec
+- Impacket
+- Metasploit
+- Hydra
+- Burp Suite
+- Gobuster
 
-Snapshot 06
-Kali Ready
+---
 
-Snapshot 07
-Complete Lab
-Documentation Standards
+# Upcoming Phases
 
-For every phase, we'll produce:
+- Credential Access
+- Remote Execution
+- Persistence
+- Privilege Escalation
+- Defense Evasion
+- Threat Hunting
+- Detection Engineering
+- Incident Response
+- Dashboard Development
+- Final SOC Portfolio
 
-Detailed README
-Terminal commands
-Explanations of each step
-Network diagrams
-Troubleshooting notes
-Commands used
-Required screenshots
-Portfolio-ready documentation
+---
 
-I'll also tell you exactly when to take screenshots so your documentation is complete.
+# Author
+
+**Akbar Md**
+
+Bachelor of Technology – Internet of Things
+
+SOC Analyst | Blue Team | Detection Engineering | Threat Hunting | Splunk | Windows Security | Cybersecurity
+
+---
+
+⭐ **If you find this project useful, consider starring the repository.**

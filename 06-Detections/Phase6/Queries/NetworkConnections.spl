@@ -1,0 +1,3 @@
+index=sysmon EventCode=3
+| table _time Computer User Image SourceIp DestinationIp DestinationPort
+| sort - _time
