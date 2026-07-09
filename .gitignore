@@ -1,0 +1,17 @@
+# VMware
+02-VMs/**
+
+# ISO images
+01-ISO/*.iso
+
+# Splunk installer
+03-Splunk/Enterprise/*.deb
+
+# VMware artifacts
+*.vmdk
+*.vmem
+*.vmsn
+*.lck
+*.nvram
+*.scoreboard
+*.log
