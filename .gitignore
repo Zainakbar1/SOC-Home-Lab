@@ -1,17 +1,37 @@
-# VMware
-02-VMs/**
+# -------------------------
+# VMware Virtual Machines
+# -------------------------
+02-VMs/
 
-# ISO images
-01-ISO/*.iso
-
-# Splunk installer
-03-Splunk/Enterprise/*.deb
-
-# VMware artifacts
+# VMware files
 *.vmdk
 *.vmem
 *.vmsn
-*.lck
+*.vmxf
+*.vmsd
 *.nvram
 *.scoreboard
+*.lck
 *.log
+
+# -------------------------
+# Installation Media
+# -------------------------
+01-ISO/
+*.iso
+
+# -------------------------
+# Splunk Installers
+# -------------------------
+03-Splunk/Enterprise/
+03-Splunk/Forwarders/
+
+*.deb
+*.msi
+
+# -------------------------
+# OS Generated Files
+# -------------------------
+Thumbs.db
+Desktop.ini
+.DS_Store
