@@ -375,9 +375,11 @@ All phases and components of this project are thoroughly documented. You can acc
 
 ---
 
-# Author
+# Authors
 
-**Akbar Md**
+**Mohammed Akbar Zainool**
+
+**Mohammed Imran**
 
 Bachelor of Technology – Internet of Things
 
