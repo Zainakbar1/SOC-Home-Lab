@@ -177,3 +177,13 @@ FolderReport.csv
 !*.ps1
 !*.sh
 !*.py
+
+###############################################################################
+# Ignore empty placeholder files
+###############################################################################
+00-Documentation/IP_Addressing.xlsx
+00-Documentation/Network_Diagram.drawio
+03-Splunk/Dashboards/Authentication Dashboard.xml
+03-Splunk/Dashboards/Endpoint Monitoring.xml
+03-Splunk/Dashboards/SOC Overview.xml
+03-Splunk/Dashboards/Threat Hunting.xml
