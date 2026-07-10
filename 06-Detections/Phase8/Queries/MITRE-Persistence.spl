@@ -1,0 +1,186 @@
+###############################################################################
+# Detection Name
+# ---------------------------------------------------------------------------
+# MITRE ATT&CK Persistence Technique Detection
+###############################################################################
+
+###############################################################################
+# Description
+# ---------------------------------------------------------------------------
+# Detects persistence mechanisms implemented during the Phase 8 attack
+# simulation and maps the observed behaviors to the MITRE ATT&CK framework.
+#
+# This search focuses on Registry Run Keys and Scheduled Tasks while also
+# displaying related command-line activity used during persistence creation.
+###############################################################################
+
+###############################################################################
+# MITRE ATT&CK
+# ---------------------------------------------------------------------------
+#
+# T1547.001  Registry Run Keys / Startup Folder
+#
+# T1053.005  Scheduled Task/Job
+#
+# T1012      Query Registry
+###############################################################################
+
+###############################################################################
+# Severity
+# ---------------------------------------------------------------------------
+# High
+###############################################################################
+
+###############################################################################
+# Data Source
+# ---------------------------------------------------------------------------
+# Sysmon Event ID 1
+###############################################################################
+
+###############################################################################
+# SPL Query
+###############################################################################
+
+index=sysmon earliest=-24h
+(
+Image="*reg.exe"
+OR Image="*schtasks.exe"
+OR CommandLine="*CurrentVersion\\Run*"
+OR CommandLine="*ChromeUpdater*"
+OR CommandLine="*ChromeUpdate*"
+OR CommandLine="*payload.bat*"
+)
+| eval MITRE_Technique=case(
+match(CommandLine,"CurrentVersion\\\\Run"),"T1547.001 - Registry Run Keys",
+match(CommandLine,"ChromeUpdater"),"T1547.001 - Registry Run Keys",
+match(Image,"schtasks.exe"),"T1053.005 - Scheduled Task",
+match(CommandLine,"ChromeUpdate"),"T1053.005 - Scheduled Task",
+match(Image,"reg.exe"),"T1012 - Query Registry",
+true(),"Other")
+| table _time Computer User MITRE_Technique ParentImage Image CommandLine
+| sort -_time
+
+###############################################################################
+# Expected Output
+# ---------------------------------------------------------------------------
+#
+# Timestamp
+# Computer
+# User
+# MITRE Technique
+# Parent Process
+# Process
+# Command Line
+###############################################################################
+
+###############################################################################
+# Investigation Guide
+# ---------------------------------------------------------------------------
+#
+# 1. Identify persistence techniques used.
+#
+# 2. Determine whether Registry Run Keys were modified.
+#
+# 3. Verify Scheduled Task creation.
+#
+# 4. Review parent-child process relationships.
+#
+# 5. Determine whether persistence is still present.
+#
+# 6. Correlate with IOC Hunt and Attack Timeline.
+###############################################################################
+
+###############################################################################
+# MITRE Mapping
+# ---------------------------------------------------------------------------
+#
+# Registry Discovery
+#        ↓
+# T1012
+#
+# Registry Run Key
+#        ↓
+# T1547.001
+#
+# Scheduled Task
+#        ↓
+# T1053.005
+###############################################################################
+
+###############################################################################
+# Indicators Observed During Lab
+# ---------------------------------------------------------------------------
+#
+# Registry Value
+#   ChromeUpdater
+#
+# Scheduled Task
+#   ChromeUpdate
+#
+# Payload
+#   payload.bat
+#
+# Registry Path
+#   HKCU\Software\Microsoft\Windows\CurrentVersion\Run
+###############################################################################
+
+###############################################################################
+# SOC Analyst Actions
+# ---------------------------------------------------------------------------
+#
+# Review:
+#
+# • Registry Run Keys
+# • Startup Folder
+# • Scheduled Tasks
+# • Services
+# • PowerShell History
+#
+# Verify:
+#
+# • Persistence removed
+# • Payload deleted
+# • Scheduled Task removed
+###############################################################################
+
+###############################################################################
+# False Positives
+# ---------------------------------------------------------------------------
+#
+# • Software installers
+# • Enterprise deployment tools
+# • Windows updates
+# • Approved administrative activity
+###############################################################################
+
+###############################################################################
+# Tuning Recommendations
+# ---------------------------------------------------------------------------
+#
+# Exclude:
+#
+# • Microsoft installers
+# • VMware Tools
+# • Enterprise software deployment
+#
+# Prioritize:
+#
+# • New Run Key values
+# • New Scheduled Tasks
+# • PowerShell-created persistence
+###############################################################################
+
+###############################################################################
+# Validation
+# ---------------------------------------------------------------------------
+#
+# Status
+#
+# ✔ Successfully Validated
+#
+# Evidence
+#
+# Screenshot 31
+#
+# MITRE ATT&CK Persistence Mapping
+###############################################################################

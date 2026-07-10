@@ -1,0 +1,4 @@
+index=sysmon earliest=-24h EventCode=1
+
+| stats count by Image ParentImage User
+| sort -count

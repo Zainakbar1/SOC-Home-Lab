@@ -1,0 +1,8 @@
+index=sysmon earliest=-24h
+
+(Image="*cmd.exe"
+OR Image="*net.exe"
+OR Image="*net1.exe")
+
+| table _time Computer User Image ParentImage CommandLine
+| sort -_time

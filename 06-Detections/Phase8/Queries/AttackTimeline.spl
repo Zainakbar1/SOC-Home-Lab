@@ -1,0 +1,251 @@
+###############################################################################
+# Detection Name
+# ---------------------------------------------------------------------------
+# Attack Timeline Reconstruction
+###############################################################################
+
+###############################################################################
+# Description
+# ---------------------------------------------------------------------------
+# Reconstructs the complete attack timeline by correlating Sysmon process
+# creation events generated during the attack simulation.
+#
+# This search enables SOC analysts to determine:
+#
+# • Initial attacker activity
+# • Discovery commands
+# • Registry access
+# • Registry persistence
+# • Scheduled task creation
+# • Remote execution
+# • IOC generation
+#
+# The results are displayed chronologically to support incident response,
+# forensic investigations, and attack reconstruction.
+###############################################################################
+
+###############################################################################
+# MITRE ATT&CK
+# ---------------------------------------------------------------------------
+# T1033     System Owner/User Discovery
+# T1082     System Information Discovery
+# T1016     Network Configuration Discovery
+# T1087     Account Discovery
+# T1069     Permission Group Discovery
+# T1057     Process Discovery
+# T1007     Service Discovery
+# T1012     Query Registry
+# T1547.001 Registry Run Keys
+# T1053.005 Scheduled Task
+# T1569.002 Remote Service Execution
+###############################################################################
+
+###############################################################################
+# Severity
+# ---------------------------------------------------------------------------
+# High
+###############################################################################
+
+###############################################################################
+# Data Source
+# ---------------------------------------------------------------------------
+# Sysmon Event ID 1
+###############################################################################
+
+###############################################################################
+# SPL Query
+###############################################################################
+
+index=sysmon earliest=-24h
+(
+Image="*whoami.exe"
+OR Image="*hostname.exe"
+OR Image="*systeminfo.exe"
+OR Image="*ipconfig.exe"
+OR Image="*tasklist.exe"
+OR Image="*net.exe"
+OR Image="*net1.exe"
+OR Image="*sc.exe"
+OR Image="*reg.exe"
+OR Image="*schtasks.exe"
+OR CommandLine="*ChromeUpdater*"
+OR CommandLine="*ChromeUpdate*"
+OR CommandLine="*payload.bat*"
+)
+| sort _time
+| table _time Computer User ParentImage Image CommandLine
+
+###############################################################################
+# Expected Output
+# ---------------------------------------------------------------------------
+#
+# Timestamp
+# Computer
+# User
+# Parent Process
+# Executed Process
+# Command Line
+#
+# Events appear from oldest to newest.
+###############################################################################
+
+###############################################################################
+# Investigation Workflow
+# ---------------------------------------------------------------------------
+#
+# Step 1
+# Identify the first event.
+#
+# Step 2
+# Identify attacker discovery commands.
+#
+# Step 3
+# Locate Registry queries.
+#
+# Step 4
+# Locate Registry persistence.
+#
+# Step 5
+# Locate Scheduled Task creation.
+#
+# Step 6
+# Locate PsExec remote execution.
+#
+# Step 7
+# Identify all Indicators of Compromise.
+#
+# Step 8
+# Document attack chronology.
+###############################################################################
+
+###############################################################################
+# Example Timeline
+# ---------------------------------------------------------------------------
+#
+# whoami.exe
+#        ↓
+#
+# hostname.exe
+#        ↓
+#
+# systeminfo.exe
+#        ↓
+#
+# ipconfig.exe
+#        ↓
+#
+# net.exe
+#        ↓
+#
+# tasklist.exe
+#        ↓
+#
+# reg query
+#        ↓
+#
+# reg add ChromeUpdater
+#        ↓
+#
+# payload.bat
+#        ↓
+#
+# schtasks /create
+#        ↓
+#
+# PsExec
+###############################################################################
+
+###############################################################################
+# SOC Investigation Questions
+# ---------------------------------------------------------------------------
+#
+# • What was the first observed attacker action?
+#
+# • Which account executed the commands?
+#
+# • Were commands executed locally or remotely?
+#
+# • What persistence mechanism was created?
+#
+# • Was the persistence removed?
+#
+# • Which processes launched the attack?
+#
+# • What parent-child relationships exist?
+#
+# • Which MITRE techniques were observed?
+###############################################################################
+
+###############################################################################
+# Threat Hunting Pivot
+# ---------------------------------------------------------------------------
+#
+# Parent Process Analysis
+#
+# | stats count by ParentImage
+#
+# User Analysis
+#
+# | stats count by User
+#
+# Process Frequency
+#
+# | stats count by Image
+#
+# Command Frequency
+#
+# | stats count by CommandLine
+###############################################################################
+
+###############################################################################
+# False Positives
+# ---------------------------------------------------------------------------
+#
+# • Administrator troubleshooting
+#
+# • Helpdesk diagnostics
+#
+# • Enterprise inventory software
+#
+# • Patch management tools
+###############################################################################
+
+###############################################################################
+# Tuning Recommendations
+# ---------------------------------------------------------------------------
+#
+# Filter:
+#
+# • SCCM
+#
+# • Microsoft Defender
+#
+# • VMware Tools
+#
+# • Enterprise software deployment
+#
+# Prioritize:
+#
+# • Off-hours execution
+#
+# • SYSTEM account activity
+#
+# • PowerShell parent processes
+#
+# • PsExec execution
+###############################################################################
+
+###############################################################################
+# Validation
+# ---------------------------------------------------------------------------
+#
+# Status
+#
+# ✔ Successfully Validated
+#
+# Evidence
+#
+# Screenshot 30
+#
+# Attack Timeline
+###############################################################################

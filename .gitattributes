@@ -1,0 +1,12 @@
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pdf binary
+*.pcap binary
+*.pcapng binary
+*.vmdk binary
+*.iso binary
+*.drawio text
+*.md text
+*.spl text
+*.xml text

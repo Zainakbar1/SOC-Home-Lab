@@ -1,0 +1,7 @@
+(index=sysmon)
+
+earliest=-24h
+
+| sort _time
+
+| table _time Computer Image ParentImage CommandLine User

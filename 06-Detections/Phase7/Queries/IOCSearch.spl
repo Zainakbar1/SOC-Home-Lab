@@ -1,0 +1,11 @@
+index=sysmon earliest=-24h
+
+(
+CommandLine="*whoami*"
+OR CommandLine="*hostname*"
+OR CommandLine="*ipconfig*"
+OR CommandLine="*cmd.exe*"
+)
+
+| table _time Computer User Image ParentImage CommandLine
+| sort -_time

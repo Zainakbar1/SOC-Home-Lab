@@ -1,0 +1,213 @@
+###############################################################################
+# Detection Name
+# ---------------------------------------------------------------------------
+# Phase 8 Detection Summary Dashboard
+###############################################################################
+
+###############################################################################
+# Description
+# ---------------------------------------------------------------------------
+# Provides an executive summary of attacker activity detected during Phase 8.
+#
+# This query aggregates all discovery commands, persistence mechanisms,
+# remote execution activity, and Indicators of Compromise into a single
+# report suitable for SOC dashboards and incident response reporting.
+#
+# This search is intended to provide analysts with a high-level overview
+# of the attack while allowing rapid pivoting into detailed investigations.
+###############################################################################
+
+###############################################################################
+# MITRE ATT&CK Coverage
+# ---------------------------------------------------------------------------
+#
+# Discovery
+#   T1033  - System Owner/User Discovery
+#   T1082  - System Information Discovery
+#   T1016  - Network Configuration Discovery
+#   T1087  - Account Discovery
+#   T1069  - Permission Group Discovery
+#   T1057  - Process Discovery
+#   T1007  - Service Discovery
+#
+# Persistence
+#   T1012      - Query Registry
+#   T1547.001  - Registry Run Keys
+#   T1053.005  - Scheduled Task
+#
+# Execution
+#   T1569.002  - Remote Service Execution
+###############################################################################
+
+###############################################################################
+# Severity
+# ---------------------------------------------------------------------------
+# High
+###############################################################################
+
+###############################################################################
+# Data Source
+# ---------------------------------------------------------------------------
+# Sysmon Event ID 1
+###############################################################################
+
+###############################################################################
+# SPL Query
+###############################################################################
+
+index=sysmon earliest=-24h
+(
+Image="*whoami.exe"
+OR Image="*hostname.exe"
+OR Image="*systeminfo.exe"
+OR Image="*ipconfig.exe"
+OR Image="*tasklist.exe"
+OR Image="*net.exe"
+OR Image="*net1.exe"
+OR Image="*sc.exe"
+OR Image="*reg.exe"
+OR Image="*schtasks.exe"
+OR CommandLine="*ChromeUpdater*"
+OR CommandLine="*ChromeUpdate*"
+OR CommandLine="*payload.bat*"
+)
+| eval Detection_Category=case(
+match(Image,"whoami.exe|hostname.exe|systeminfo.exe|ipconfig.exe"),"Discovery",
+match(Image,"net.exe|net1.exe"),"Account Enumeration",
+match(Image,"tasklist.exe|sc.exe"),"System Enumeration",
+match(Image,"reg.exe"),"Registry Activity",
+match(Image,"schtasks.exe"),"Scheduled Task Activity",
+match(CommandLine,"ChromeUpdater"),"Registry Persistence",
+match(CommandLine,"ChromeUpdate"),"Scheduled Task Persistence",
+match(CommandLine,"payload.bat"),"Payload Reference",
+true(),"Other"
+)
+| stats count by Detection_Category
+| sort -count
+
+###############################################################################
+# Expected Output
+# ---------------------------------------------------------------------------
+#
+# Detection Category
+#
+# Number of Events
+#
+# Example
+#
+# Discovery                 18
+# Registry Activity          4
+# Scheduled Task Activity    2
+# Registry Persistence       1
+# Payload Reference          2
+###############################################################################
+
+###############################################################################
+# Executive Summary
+# ---------------------------------------------------------------------------
+#
+# This query answers:
+#
+# • How many discovery events occurred?
+#
+# • How many persistence events occurred?
+#
+# • Was Registry persistence detected?
+#
+# • Was Scheduled Task persistence detected?
+#
+# • Were IOC artifacts observed?
+#
+# • Which activity type dominated the incident?
+###############################################################################
+
+###############################################################################
+# Investigation Guide
+# ---------------------------------------------------------------------------
+#
+# If Discovery activity is high:
+#
+# → Review user context
+# → Review parent process
+#
+# If Registry Activity exists:
+#
+# → Review Registry Run Keys
+#
+# If Scheduled Task Activity exists:
+#
+# → Verify scheduled task legitimacy
+#
+# If Payload Reference exists:
+#
+# → Locate the referenced payload
+#
+# → Confirm removal during containment
+###############################################################################
+
+###############################################################################
+# Threat Hunting Pivot
+# ---------------------------------------------------------------------------
+#
+# Expand Discovery
+#
+# | stats count by Image
+#
+# Expand Registry Activity
+#
+# | search Image="*reg.exe"
+#
+# Expand Scheduled Tasks
+#
+# | search Image="*schtasks.exe"
+#
+# Expand IOC Hunt
+#
+# | search CommandLine="*payload.bat*"
+###############################################################################
+
+###############################################################################
+# False Positives
+# ---------------------------------------------------------------------------
+#
+# • Windows administrators
+# • IT support engineers
+# • Software deployment tools
+# • Asset inventory solutions
+# • Enterprise management platforms
+###############################################################################
+
+###############################################################################
+# Tuning Recommendations
+# ---------------------------------------------------------------------------
+#
+# Exclude:
+#
+# • SCCM
+# • Intune
+# • VMware Tools
+# • Microsoft Defender
+#
+# Prioritize:
+#
+# • PowerShell execution
+# • SYSTEM account activity
+# • New Registry Run Keys
+# • Newly created Scheduled Tasks
+# • Unusual parent-child relationships
+###############################################################################
+
+###############################################################################
+# Validation
+# ---------------------------------------------------------------------------
+#
+# Status
+#
+# ✔ Successfully Validated
+#
+# Evidence
+#
+# Screenshot 32
+#
+# Detection Engineering Summary
+###############################################################################

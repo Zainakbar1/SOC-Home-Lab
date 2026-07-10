@@ -1,0 +1,194 @@
+###############################################################################
+# Detection Name
+# ---------------------------------------------------------------------------
+# Windows IOC Hunting
+###############################################################################
+
+###############################################################################
+# Description
+# ---------------------------------------------------------------------------
+# Hunts for Indicators of Compromise (IOCs) generated during the Phase 8 attack
+# simulation.
+#
+# This query correlates registry persistence, scheduled task creation, payload
+# execution, and attacker discovery commands to provide a unified view of
+# malicious activity.
+#
+# This search is intended for incident response and threat hunting activities.
+###############################################################################
+
+###############################################################################
+# MITRE ATT&CK
+# ---------------------------------------------------------------------------
+# T1033    - System Owner/User Discovery
+# T1082    - System Information Discovery
+# T1087    - Account Discovery
+# T1057    - Process Discovery
+# T1007    - System Service Discovery
+# T1012    - Query Registry
+# T1547.001- Registry Run Keys / Startup Folder
+# T1053.005- Scheduled Task/Job
+# T1569.002- Remote Service Execution
+###############################################################################
+
+###############################################################################
+# Severity
+# ---------------------------------------------------------------------------
+# High
+###############################################################################
+
+###############################################################################
+# Data Source
+# ---------------------------------------------------------------------------
+# Sysmon Event ID 1
+###############################################################################
+
+###############################################################################
+# SPL Query
+###############################################################################
+
+index=sysmon earliest=-24h
+(
+CommandLine="*ChromeUpdate*"
+OR CommandLine="*ChromeUpdater*"
+OR CommandLine="*payload.bat*"
+OR CommandLine="*CurrentVersion\\Run*"
+OR Image="*reg.exe"
+OR Image="*schtasks.exe"
+OR Image="*tasklist.exe"
+OR Image="*systeminfo.exe"
+OR Image="*whoami.exe"
+OR Image="*hostname.exe"
+OR Image="*ipconfig.exe"
+OR Image="*net.exe"
+OR Image="*sc.exe"
+)
+| table _time Computer User ParentImage Image CommandLine
+| sort -_time
+
+###############################################################################
+# Expected Output
+# ---------------------------------------------------------------------------
+# Timestamp
+# Computer
+# User
+# Parent Process
+# Executed Process
+# Full Command Line
+###############################################################################
+
+###############################################################################
+# Indicators of Compromise
+# ---------------------------------------------------------------------------
+# Registry Value
+#   ChromeUpdater
+#
+# Scheduled Task
+#   ChromeUpdate
+#
+# Payload
+#   payload.bat
+#
+# Discovery Commands
+#   whoami.exe
+#   hostname.exe
+#   systeminfo.exe
+#   ipconfig.exe
+#   tasklist.exe
+#
+# Persistence Commands
+#   reg.exe
+#   schtasks.exe
+###############################################################################
+
+###############################################################################
+# Investigation Guide
+# ---------------------------------------------------------------------------
+# 1. Identify the first malicious event.
+# 2. Review discovery activity.
+# 3. Confirm registry persistence.
+# 4. Confirm scheduled task persistence.
+# 5. Review parent-child process relationships.
+# 6. Identify remote execution.
+# 7. Build the attack timeline.
+###############################################################################
+
+###############################################################################
+# Hunting Workflow
+# ---------------------------------------------------------------------------
+#
+# Discovery
+#      ↓
+# Account Enumeration
+#      ↓
+# Registry Discovery
+#      ↓
+# Registry Persistence
+#      ↓
+# Scheduled Task
+#      ↓
+# Remote Execution
+#      ↓
+# IOC Collection
+###############################################################################
+
+###############################################################################
+# False Positives
+# ---------------------------------------------------------------------------
+# • Security administrators
+# • Endpoint management tools
+# • Enterprise software deployment
+# • Automated inventory scripts
+###############################################################################
+
+###############################################################################
+# Tuning Recommendations
+# ---------------------------------------------------------------------------
+# Exclude:
+#
+# • Approved administrator accounts
+# • Microsoft maintenance activities
+# • VMware Tools
+# • Enterprise deployment solutions
+#
+# Focus on:
+#
+# • New registry values
+# • New scheduled tasks
+# • Unusual parent processes
+# • Off-hours activity
+###############################################################################
+
+###############################################################################
+# SOC Analyst Response
+# ---------------------------------------------------------------------------
+# Review:
+#
+# ✔ Registry Run Keys
+# ✔ Scheduled Tasks
+# ✔ Startup Folder
+# ✔ Running Services
+# ✔ Local Users
+# ✔ Administrator Group
+# ✔ Recent Authentication Events
+#
+# Determine:
+#
+# • Initial activity
+# • Persistence mechanism
+# • Scope of compromise
+# • Required containment actions
+###############################################################################
+
+###############################################################################
+# Validation
+# ---------------------------------------------------------------------------
+# Status
+#
+# ✔ Successfully Validated
+#
+# Screenshots
+#
+# 29-final-ioc-hunt.png
+# 30-attack-timeline.png
+###############################################################################

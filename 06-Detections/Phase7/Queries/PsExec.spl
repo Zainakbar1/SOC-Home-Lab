@@ -1,0 +1,12 @@
+index=sysmon earliest=-24h
+(
+Image="*cmd.exe"
+OR ParentImage="*services.exe"
+OR ParentImage="*PSEXESVC*"
+OR CommandLine="*whoami*"
+OR CommandLine="*hostname*"
+OR CommandLine="*ipconfig*"
+)
+
+| table _time Computer User Image ParentImage CommandLine ProcessGuid
+| sort -_time
