@@ -210,7 +210,7 @@ Downloaded files
 - Sysmon64.exe
 - Sysmon configuration XML
 
-![11](../Screenshots/Phase3/11-sysmon-files.png)
+![11](../Screenshots/Phase3/11-Sysmon Files.png)
 
 *Figure 11: Sysmon installation files.*
 
@@ -224,7 +224,7 @@ Command
 Sysmon64.exe -accepteula -i sysmonconfig-export.xml
 ```
 
-![12](../Screenshots/Phase3/12-sysmon-installation.png)
+![12](../Screenshots/Phase3/12-Sysmon Installation.png)
 
 *Figure 12: Successful Sysmon installation.*
 
@@ -238,7 +238,7 @@ Command
 Get-Service Sysmon64
 ```
 
-![13](../Screenshots/Phase3/13-sysmon-service-running.png)
+![13](../Screenshots/Phase3/13-Service Verification.png)
 
 *Figure 13: Sysmon service running.*
 
@@ -252,7 +252,7 @@ Command
 Get-WinEvent -LogName "Microsoft-Windows-Sysmon/Operational" -MaxEvents 10
 ```
 
-![14](../Screenshots/Phase3/14-sysmon-event-log.png)
+![14](../Screenshots/Phase3/14-Event Log.png)
 
 *Figure 14: Sysmon generating Windows Event Logs.*
 
@@ -268,7 +268,7 @@ sysmon64 -c
 
 This confirms the active configuration, hashing algorithms, process creation rules, registry monitoring, and network monitoring.
 
-![15](../Screenshots/Phase3/15-sysmon-configuration.png)
+![15](../Screenshots/Phase3/15-Configuration Verification.png)
 
 *Figure 15: Active Sysmon configuration.*
 

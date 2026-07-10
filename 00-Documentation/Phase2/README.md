@@ -60,9 +60,7 @@ SOC-LAB/
 
 ---
 
-📷 **Screenshot Placeholder**
-
-> Splunk Download (../Screenshots/Phase2/01-splunk-download.png)
+![Splunk Download](../Screenshots/Phase2/01-splunk-enterprise-download.png)
 
 *Figure 1: Splunk Enterprise Debian installation package downloaded successfully.*
 
@@ -70,9 +68,7 @@ SOC-LAB/
 
 The installation package was moved into the project repository for long-term storage and version management.
 
-📷 **Screenshot Placeholder**
-
-> Splunk Installer Verification (../Screenshots/Phase2/02-splunk-installer-verification.png)
+![Splunk Installer Verification](../Screenshots/Phase2/02-splunk-installer-verification.png)
 
 *Figure 2: Verification that the Splunk Enterprise installation package was stored in the project directory before deployment.*
 
@@ -86,9 +82,7 @@ Installation Command
 sudo dpkg -i splunk-10.4.1-5a009d941268-linux-amd64.deb
 ```
 
-📷 **Screenshot Placeholder**
-
-> Splunk Installation (../Screenshots/Phase2/03-splunk-installation-complete.png)
+![Splunk Installation Complete](../Screenshots/Phase2/03-splunk-installation-complete.png)
 
 *Figure 3: Successful installation of Splunk Enterprise using the Debian package manager.*
 
@@ -110,9 +104,7 @@ The Splunk Web interface became available at:
 http://10.10.10.10:8000
 ```
 
-📷 **Screenshot Placeholder**
-
-> Splunk First Startup (../Screenshots/Phase2/04-splunk-first-startup.png)
+![Splunk First Startup](../Screenshots/Phase2/04-splunk-first-startup.png)
 
 *Figure 4: Successful first-time initialization of Splunk Enterprise and activation of the Splunk Web interface.*
 
@@ -133,9 +125,7 @@ Result
 - splunkd running
 - helper services running
 
-📷 **Screenshot Placeholder**
-
-> Splunk Status (../Screenshots/Phase2/05-splunk-status.png)
+![Splunk Status](../Screenshots/Phase2/05-splunk-status.png)
 
 *Figure 5: Verification that all Splunk Enterprise services are running successfully.*
 
@@ -156,9 +146,7 @@ Result
 - Init script installed
 - Automatic startup enabled
 
-📷 **Screenshot Placeholder**
-
-> Boot Start Configuration (../Screenshots/Phase2/06-splunk-boot-start.png)
+![Boot Start Configuration](../Screenshots/Phase2/06-splunk-boot-start.png)
 
 *Figure 6: Splunk Enterprise configured to start automatically during system boot.*
 
@@ -181,9 +169,7 @@ Verified Ports
 | 8000 | Splunk Web Interface |
 | 8089 | Management Port |
 
-📷 **Screenshot Placeholder**
-
-> Listening Ports (../Screenshots/Phase2/07-splunk-listening-ports.png)
+![Listening Ports](../Screenshots/Phase2/07-splunk-listening-ports.png)
 
 *Figure 7: Verification of active Splunk Enterprise network services.*
 
@@ -206,17 +192,13 @@ Username : splunkadmin
 Password : ********
 ```
 
-📷 **Screenshot Placeholder**
-
-> Splunk Dashboard (../Screenshots/Phase2/08-splunk-dashboard.png)
+![Splunk Dashboard](../Screenshots/Phase2/08-splunk-dashboard.png)
 
 *Figure 8: Successful login to the Splunk Enterprise dashboard.*
 
 ---
 
-📷 **Screenshot Placeholder**
-
-> Splunk Login Page (../Screenshots/Phase2/09-splunk-login-page.png)
+![Splunk Login Page](../Screenshots/Phase2/09-splunk-login-page.png)
 
 *Figure 9: Splunk Enterprise login page after administrator logout.*
 
@@ -232,6 +214,10 @@ Receiving Port
 9997/TCP
 ```
 
+![Splunk Receiving Port Configuration](../Screenshots/Phase2/11-splunk-receiving-port-configuration.png)
+
+*Figure 9b: Configuring the receiving port (9997) in Splunk Web.*
+
 ---
 
 # Custom Indexes
@@ -245,9 +231,7 @@ To organize endpoint logs efficiently, dedicated indexes were created.
 | linux | Linux System Logs |
 | security | Security Related Events |
 
-📷 **Screenshot Placeholder**
-
-> Custom Splunk Indexes (../Screenshots/Phase2/10-custom-indexes.png)
+![Custom Splunk Indexes](../Screenshots/Phase2/10-custom-indexes.png)
 
 *Figure 10: Custom indexes created for organizing endpoint and security event data.*
 
@@ -269,9 +253,7 @@ Result
 0.0.0.0:9997
 ```
 
-📷 **Screenshot Placeholder**
-
-> Splunk Receiving Port Verification (../Screenshots/Phase2/11-splunk-receiving-port-verification.png)
+![Splunk Receiving Port Verification](../Screenshots/Phase2/12-splunk-receiving-port-verification.png)
 
 *Figure 11: Verification that Splunk Enterprise is actively listening on TCP port 9997.*
 

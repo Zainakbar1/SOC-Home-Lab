@@ -116,6 +116,15 @@ Incident Documentation
 netexec smb 10.10.10.30
 ```
 
+![Nmap Service Verification](../Screenshots/Phase7/01-nmap-service-verification.png)
+*Figure 1: Checking for open SMB service on target.*
+
+![SSH Port Check](../Screenshots/Phase7/02-ssh-port-check.png)
+*Figure 2: Verifying SSH port status.*
+
+![SMB Port Verification](../Screenshots/Phase7/03-smb-port-verification.png)
+*Figure 3: Detailed SMB service checking.*
+
 ---
 
 ## SMB Authentication
@@ -123,6 +132,15 @@ netexec smb 10.10.10.30
 ```bash
 netexec smb 10.10.10.30 -u socadmin -p root
 ```
+
+![NetExec Successful Authentication](../Screenshots/Phase7/04-netexec-successful-authentication.png)
+*Figure 4: Authenticated session validated using NetExec.*
+
+![Password Wordlist](../Screenshots/Phase7/05-password-wordlist.png)
+*Figure 5: Custom passwords list created for scanning.*
+
+![Hydra SMB Attempt](../Screenshots/Phase7/06-hydra-smb-attempt.png)
+*Figure 6: Hydra executing SMB password brute-forcing.*
 
 ---
 
@@ -132,6 +150,9 @@ netexec smb 10.10.10.30 -u socadmin -p root
 netexec smb 10.10.10.30 -u socadmin -p root --shares
 ```
 
+![NetExec Share Enumeration](../Screenshots/Phase7/07-netexec-share-enumeration.png)
+*Figure 7: Discovering available shares with administrative credentials.*
+
 ---
 
 ## smbclient
@@ -140,6 +161,12 @@ netexec smb 10.10.10.30 -u socadmin -p root --shares
 smbclient -L //10.10.10.30 -U socadmin
 ```
 
+![smbclient Share Enumeration](../Screenshots/Phase7/10-smbclient-share-enumeration.png)
+*Figure 10: Validating share permissions using smbclient.*
+
+![NetExec Share Enumeration 2](../Screenshots/Phase7/11-netexec-share-enumeration.png)
+*Figure 11: NetExec output confirming administrative credentials.*
+
 ---
 
 ## PsExec
@@ -147,6 +174,9 @@ smbclient -L //10.10.10.30 -U socadmin
 ```bash
 impacket-psexec WINDOWS-SOC/socadmin:root@10.10.10.30
 ```
+
+![Successful PsExec Remote Shell](../Screenshots/Phase7/08-successful-psexec-remote-shell.png)
+*Figure 8: Spawning an interactive SYSTEM shell on Windows using PsExec.*
 
 ---
 
@@ -172,6 +202,9 @@ net user
 index=sysmon EventCode=1
 ```
 
+![PsExec Process Creation Events](../Screenshots/Phase7/09-psexec-process-creation-events.png)
+*Figure 9: Splunk query identifying administrative process creation events.*
+
 ---
 
 ## Process Timeline
@@ -191,6 +224,9 @@ index=sysmon
 CommandLine="*whoami*"
 ```
 
+![PsExec Threat Hunt Splunk Query](../Screenshots/Phase7/12-psexec-threat-hunt.png)
+*Figure 12: Searching for malicious command executions in Splunk.*
+
 ---
 
 ## Threat Timeline
@@ -200,6 +236,9 @@ index=sysmon
 
 | timechart count
 ```
+
+![Attack Timeline Chart](../Screenshots/Phase7/13-attack-timeline.png)
+*Figure 13: Splunk chart mapping attack actions over time.*
 
 ---
 

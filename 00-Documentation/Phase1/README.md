@@ -29,8 +29,8 @@ This phase included:
       ┌────────────────────────┼────────────────────────┐
       │                        │                        │
  Ubuntu-SOC               Windows-SOC              Kali-SOC
-192.168.48.137          192.168.48.136         192.168.48.138
-10.10.10.10             10.10.10.30           10.10.10.20
+192.168.48.137          192.168.48.136           192.168.48.138
+10.10.10.10               10.10.10.30              10.10.10.20
       │                        │                        │
       └────────────────────────┼────────────────────────┘
                   VMware Host-only (VMnet1)
@@ -58,25 +58,19 @@ Ubuntu was configured with dual network interfaces.
 | ens33 | NAT | DHCP |
 | ens34 | Host-only | Static |
 
-📷 **Screenshot Placeholder**
-
-> Ubuntu Network Settings (../Screenshots/Phase1/01-ubuntu-network-settings.png)
+![Ubuntu Network Settings](../Screenshots/Phase1/01-ubuntu-network-settings.png)
 
 *Figure 1: Initial network configuration before assigning the Host-only static IP.*
 
 ---
 
-📷 **Screenshot Placeholder**
-
-> Ubuntu Network Connections (../Screenshots/Phase1/02-ubuntu-network-connections.png)
+![Ubuntu Network Connections](../Screenshots/Phase1/02-ubuntu-network-connections.png)
 
 *Figure 2: NetworkManager connections available on Ubuntu before configuration.*
 
 ---
 
-📷 **Screenshot Placeholder**
-
-> Ubuntu Static IP Configuration (../Screenshots/Phase1/03-ubuntu-static-ip-configured.png)
+![Ubuntu Static IP Configuration](../Screenshots/Phase1/03-ubuntu-static-ip-configured.png)
 
 *Figure 3: Ubuntu Host-only interface configured with the static IP address 10.10.10.10/24.*
 
@@ -91,41 +85,31 @@ Windows uses two Ethernet adapters.
 | Ethernet0 | NAT | DHCP |
 | Ethernet1 | Host-only | Static |
 
-📷 **Screenshot Placeholder**
-
-> Windows Network Adapters (../Screenshots/Phase1/04-windows-network-adapters.png)
+![Windows Network Adapters](../Screenshots/Phase1/04-windows-network-adapters.png)
 
 *Figure 4: Windows network adapters before configuration.*
 
 ---
 
-📷 **Screenshot Placeholder**
-
-> Windows IPv4 Properties (../Screenshots/Phase1/05-windows-ipv4-properties.png)
+![Windows IPv4 Properties](../Screenshots/Phase1/05-windows-ipv4-properties.png)
 
 *Figure 5: Manual IPv4 configuration window.*
 
 ---
 
-📷 **Screenshot Placeholder**
-
-> Windows Static IP Configuration (../Screenshots/Phase1/06-windows-static-ip-configured.png)
+![Windows Static IP Configuration](../Screenshots/Phase1/06-windows-static-ip-configured.png)
 
 *Figure 6: Windows Host-only adapter configured with the static IP address 10.10.10.30/24.*
 
 ---
 
-📷 **Screenshot Placeholder**
-
-> Windows IP Configuration (../Screenshots/Phase1/07-windows-ipconfig.png)
+![Windows IP Configuration](../Screenshots/Phase1/07-windows-ipconfig.png)
 
 *Figure 7: Verification using the ipconfig command.*
 
 ---
 
-📷 **Screenshot Placeholder**
-
-> Windows Internet Connectivity (../Screenshots/Phase1/08-windows-internet-connectivity.png)
+![Windows Internet Connectivity](../Screenshots/Phase1/08-windows-internet-connectivity.png)
 
 *Figure 8: Internet connectivity verified through the NAT adapter.*
 
@@ -140,17 +124,19 @@ Kali Linux was configured as the attacker machine.
 | eth0 | NAT | DHCP |
 | eth1 | Host-only | Static |
 
-📷 **Screenshot Placeholder**
-
-> Kali Network Settings (../Screenshots/Phase1/09-kali-network-settings.png)
+![Kali Network Settings](../Screenshots/Phase1/09-kali-vm-network-settings.png)
 
 *Figure 9: Initial Kali network configuration.*
 
 ---
 
-📷 **Screenshot Placeholder**
+![Kali Network Connections](../Screenshots/Phase1/10-kali-network-connections.png)
 
-> Kali Static IP Configuration (../Screenshots/Phase1/11-kali-static-ip-configured.png)
+*Figure 9b: Kali network connections list before configuration.*
+
+---
+
+![Kali Static IP Configuration](../Screenshots/Phase1/11-kali-static-ip-configured.png)
 
 *Figure 10: Kali Host-only interface configured with the static IP address 10.10.10.20/24.*
 
@@ -160,25 +146,19 @@ Kali Linux was configured as the attacker machine.
 
 The following connectivity tests were performed.
 
-📷 **Screenshot Placeholder**
-
-> Ubuntu Network Connectivity Test (../Screenshots/Phase1/12-ubuntu-network-connectivity-test.png)
+![Ubuntu Network Connectivity Test](../Screenshots/Phase1/12-ubuntu-network-connectivity-test.png)
 
 *Figure 11: Ubuntu successfully communicating with Windows and Kali.*
 
 ---
 
-📷 **Screenshot Placeholder**
-
-> Kali Network Connectivity Test (../Screenshots/Phase1/13-kali-network-connectivity-test.png)
+![Kali Network Connectivity Test](../Screenshots/Phase1/13-kali-network-connectivity-test.png)
 
 *Figure 12: Kali successfully communicating with Ubuntu and Windows.*
 
 ---
 
-📷 **Screenshot Placeholder**
-
-> Windows Network Connectivity Test (../Screenshots/Phase1/14-windows-network-connectivity-test.png)
+![Windows Network Connectivity Test](../Screenshots/Phase1/14-windows-network-connectivity-test.png)
 
 *Figure 13: Windows successfully communicating with Ubuntu and Kali.*
 
@@ -188,9 +168,7 @@ The following connectivity tests were performed.
 
 OpenSSH Server was installed on Ubuntu.
 
-📷 **Screenshot Placeholder**
-
-> OpenSSH Service Status (../Screenshots/Phase1/15-openssh-service-status.png)
+![OpenSSH Service Status](../Screenshots/Phase1/15-openssh-service-status.png)
 
 *Figure 14: OpenSSH Server running on Ubuntu.*
 
@@ -200,9 +178,7 @@ OpenSSH Server was installed on Ubuntu.
 
 Remote administration was verified from Kali.
 
-📷 **Screenshot Placeholder**
-
-> SSH Connection Test (../Screenshots/Phase1/16-ssh-connection-test.png)
+![SSH Connection Test](../Screenshots/Phase1/16-ssh-connection-test.png)
 
 *Figure 15: Successful SSH login from Kali to Ubuntu.*
 

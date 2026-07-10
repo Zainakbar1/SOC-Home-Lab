@@ -39,8 +39,8 @@ At the completion of this phase, the following objectives were achieved:
         ┌───────────────┼───────────────┐
         │               │               │
         │               │               │
- Ubuntu SOC         Kali Linux      Windows 11
-10.10.10.10        10.10.10.20      10.10.10.30
+   Ubuntu SOC         Kali Linux        Windows 11
+   10.10.10.10        10.10.10.20       10.10.10.30
         │               │               │
         └────── Host-Only SOC Network ──┘
 ```
@@ -134,11 +134,8 @@ Result:
 - Splunk Forwarder operational
 - Windows Defender operational
 
-Screenshot:
-
-```
-01-initial-incident-assessment.png
-```
+![Initial Incident Assessment](../Screenshots/Phase8/01-initial-incident-assessment.png)
+*Figure 1: Initial assessment verifying that no malicious process or shell session is currently running.*
 
 ---
 
@@ -163,9 +160,20 @@ Get-LocalUser
 Get-ScheduledTask
 ```
 
-Screenshots
+![Sysmon Evidence](../Screenshots/Phase8/02-sysmon-evidence.png)
+*Figure 2: Process creation events logged in Sysmon.*
 
-02–06
+![Service Installation Events](../Screenshots/Phase8/03-service-installation-events.png)
+*Figure 3: New service installations detected in the logs.*
+
+![Local Administrators](../Screenshots/Phase8/04-local-administrators.png)
+*Figure 4: Active accounts list indicating local administrative changes.*
+
+![Scheduled Tasks](../Screenshots/Phase8/05-scheduled-tasks.png)
+*Figure 5: Active scheduled tasks listing.*
+
+![Services Verification](../Screenshots/Phase8/06-services-verification.png)
+*Figure 6: Active system services verification output.*
 
 ---
 
@@ -185,9 +193,23 @@ Result:
 
 No unauthorized persistence mechanisms were discovered.
 
-Screenshots
+![Startup Folder](../Screenshots/Phase8/07-startup-folder.png)
+*Figure 7: Checking startup directory content.*
 
-07–12
+![Registry Run HKLM](../Screenshots/Phase8/08-registry-run-hklm.png)
+*Figure 8: Local machine Run keys query results.*
+
+![Registry Run HKCU](../Screenshots/Phase8/09-registry-run-hkcu.png)
+*Figure 9: Current user Run keys query results.*
+
+![Local Users](../Screenshots/Phase8/10-local-users.png)
+*Figure 10: Local users listing.*
+
+![User Creation Events](../Screenshots/Phase8/11-user-creation-events.png)
+*Figure 11: Event ID 4720 logging user creation.*
+
+![RDP Users](../Screenshots/Phase8/12-rdp-users.png)
+*Figure 12: Remote desktop users list.*
 
 ---
 
@@ -205,9 +227,26 @@ Searches included:
 - Service Installation
 - Logon Events
 
-Screenshots
+![Attack Timeline](../Screenshots/Phase8/13-attack-timeline.png)
+*Figure 13: Splunk search reconstructing the full attack timeline.*
 
-13–19
+![PsExec Events](../Screenshots/Phase8/14-psexec-events.png)
+*Figure 14: Filtering for PsExec process creation telemetry.*
+
+![SMB Activity](../Screenshots/Phase8/15-smb-activity.png)
+*Figure 15: Mapping SMB connection events.*
+
+![Service Install](../Screenshots/Phase8/16-service-install.png)
+*Figure 16: Finding Event ID 7045 service install logs.*
+
+![Logons](../Screenshots/Phase8/17-logons.png)
+*Figure 17: Analyzing logon events for administrative users.*
+
+![Process Tree](../Screenshots/Phase8/18-process-tree.png)
+*Figure 18: Generating the execution process tree in Splunk.*
+
+![IOCs](../Screenshots/Phase8/19-iocs.png)
+*Figure 19: Finding specific Indicators of Compromise.*
 
 ---
 
@@ -235,9 +274,14 @@ Telemetry generated:
 - Command Line
 - User Context
 
-Screenshots
+![Discovery Systeminfo](../Screenshots/Phase8/20-discovery-systeminfo.png)
+*Figure 20: Attacker executing systeminfo to profile target.*
 
-20–22
+![Account Discovery](../Screenshots/Phase8/21-account-discovery.png)
+*Figure 21: Attacker running net user to list active accounts.*
+
+![Process Service Discovery](../Screenshots/Phase8/22-process-service-discovery.png)
+*Figure 22: Attacker listing services and processes.*
 
 ---
 
@@ -256,9 +300,8 @@ Purpose
 
 Detect Registry-based persistence.
 
-Screenshot
-
-23
+![Registry Discovery](../Screenshots/Phase8/23-registry-discovery.png)
+*Figure 23: Attacker query of run key registry nodes.*
 
 ---
 
@@ -288,9 +331,8 @@ Detection
 
 Successfully captured by Sysmon and Splunk.
 
-Screenshot
-
-24
+![Registry Persistence Created](../Screenshots/Phase8/24-registry-persistence-created.png)
+*Figure 24: Sysmon capturing registry key modification for persistence.*
 
 ---
 
@@ -320,9 +362,11 @@ Detection
 
 Successfully captured by Splunk.
 
-Screenshots
+![Payload Created](../Screenshots/Phase8/25-payload-created.png)
+*Figure 25: Payload batch script placed in the endpoint filesystem.*
 
-25–26
+![Scheduled Task Created](../Screenshots/Phase8/26-scheduled-task-created.png)
+*Figure 26: Creation of scheduled task 'ChromeUpdate' recorded in logs.*
 
 ---
 
@@ -348,9 +392,11 @@ Telemetry generated:
 - SYSTEM Context
 - Command Line
 
-Screenshots
+![PsExec Session](../Screenshots/Phase8/27-psexec-session.png)
+*Figure 27: Attacker remote console execution session.*
 
-27–28
+![PsExec Sysmon Events](../Screenshots/Phase8/28-psexec-sysmon-events.png)
+*Figure 28: Endpoint logs indicating psexecsvc.exe service operations.*
 
 ---
 
@@ -368,9 +414,8 @@ Indicators searched:
 - systeminfo.exe
 - tasklist.exe
 
-Screenshots
-
-29
+![Final IOC Hunt](../Screenshots/Phase8/29-final-ioc-hunt.png)
+*Figure 29: Splunk query isolating specific malware indicators.*
 
 ---
 
@@ -386,9 +431,8 @@ Fields analyzed:
 - User
 - Command Line
 
-Screenshot
-
-30
+![Attack Timeline Reconstruction](../Screenshots/Phase8/30-attack-timeline.png)
+*Figure 30: Detailed event-by-event timeline search in Splunk.*
 
 ---
 
@@ -408,9 +452,8 @@ Observed techniques were mapped to MITRE ATT&CK.
 | Scheduled Tasks | T1053.005 |
 | Remote Execution | T1569.002 |
 
-Screenshot
-
-31
+![MITRE Persistence](../Screenshots/Phase8/31-mitre-persistence.png)
+*Figure 31: Mapping malicious registry key additions to MITRE T1547.001.*
 
 ---
 
@@ -424,9 +467,8 @@ Detection rules successfully identified:
 - IOC activity
 - Timeline reconstruction
 
-Screenshot
-
-32
+![Detection Summary](../Screenshots/Phase8/32-detection-summary.png)
+*Figure 32: Summary of successfully triggered correlation rules in Splunk.*
 
 ---
 

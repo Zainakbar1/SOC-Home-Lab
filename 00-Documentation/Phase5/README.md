@@ -106,6 +106,10 @@ splunk-add-on-for-microsoft-windows_1010.spl
 splunk-add-on-for-sysmon_501.spl
 ```
 
+![Downloaded spl packages](../Screenshots/Phase5/01-install-windows-ta-sysmon.png)
+
+*Figure 1: Technology Add-on files (.spl) ready for Splunk installation.*
+
 ---
 
 ## Install Applications
@@ -121,6 +125,10 @@ Splunk_TA_windows
 Splunk_TA_microsoft_sysmon
 ```
 
+![Installed apps terminal](../Screenshots/Phase5/02-installed-apps-terminal.png)
+
+*Figure 2: Verifying installed app directories in Splunk.*
+
 ---
 
 ## Restart Splunk
@@ -130,6 +138,10 @@ Restarted Splunk Enterprise.
 ```bash
 sudo /opt/splunk/bin/splunk restart
 ```
+
+![Splunk restart](../Screenshots/Phase5/03-splunk-restart.png)
+
+*Figure 3: Restarting the Splunk Enterprise server after app installation.*
 
 ---
 
@@ -167,6 +179,10 @@ Expected fields:
 - ParentImage
 - ProcessId
 
+![Sysmon fields](../Screenshots/Phase5/04-sysmon-fields.png)
+
+*Figure 4: Automated field extraction working correctly on raw Sysmon events.*
+
 ---
 
 Verified Process Creation events.
@@ -180,6 +196,10 @@ index=sysmon EventCode=1
 Result:
 
 Multiple Process Creation events successfully indexed.
+
+![Sysmon events](../Screenshots/Phase5/05-sysmon-events.png)
+
+*Figure 5: Verifying EventCode=1 process execution events in Splunk.*
 
 ---
 

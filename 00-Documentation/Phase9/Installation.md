@@ -59,8 +59,8 @@ This document provides a complete installation guide for recreating the SOC Home
                              │
         ┌────────────────────┼────────────────────┐
         │                    │                    │
- Ubuntu-SOC             Kali-SOC            Windows-SOC
-10.10.10.10           10.10.10.20         10.10.10.30
+   Ubuntu-SOC             Kali-SOC            Windows-SOC
+   10.10.10.10          10.10.10.20         10.10.10.30
         │                    │                    │
         └──────── Host-Only SOC Network ──────────┘
 ```

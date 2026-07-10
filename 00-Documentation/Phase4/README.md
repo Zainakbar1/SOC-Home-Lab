@@ -53,7 +53,9 @@ Verified communication between Kali and the lab machines.
 
 Command:
 
+```bash
 ping -c 4 10.10.10.10
+```
 
 Result
 
@@ -61,11 +63,17 @@ Success
 
 Command
 
+```bash
 ping -c 4 10.10.10.30
+```
 
 Result
 
 Success
+
+![Network Connectivity](../Screenshots/Phase4/01-network-connectivity.png)
+
+*Figure 1: Bidirectional ping scans verifying Kali connectivity to the Windows endpoint and Ubuntu SOC server.*
 2. Verified Nmap Installation
 
 Command
@@ -76,6 +84,10 @@ Verified
 
 Nmap installed
 Version 7.99
+
+![Nmap Version](../Screenshots/Phase4/02-nmap-version.png)
+
+*Figure 2: Verifying that Nmap is installed and configured on the Kali attacker platform.*
 3. Host Discovery
 
 Performed ICMP sweep of the SOC network.
@@ -91,6 +103,10 @@ IP	Description
 10.10.10.10	Ubuntu SOC
 10.10.10.20	Kali Linux
 10.10.10.30	Windows Endpoint
+
+![Host Discovery](../Screenshots/Phase4/03-host-discovery.png)
+
+*Figure 3: Nmap Host Discovery scan output identifying all active network interfaces.*
 4. TCP Port Scan
 
 Performed a default TCP scan against the Windows endpoint.
@@ -105,6 +121,10 @@ Port	Service
 135	MSRPC
 139	NetBIOS
 445	SMB
+
+![TCP Port Scan](../Screenshots/Phase4/04-basic-port-scan.png)
+
+*Figure 4: Nmap default TCP port scan against the target Windows VM, discovering ports 135, 139, and 445.*
 5. Service Detection
 
 Performed version detection.
@@ -119,6 +139,10 @@ Port	Service
 135	Microsoft RPC
 139	NetBIOS
 445	Microsoft SMB
+
+![Service Detection](../Screenshots/Phase4/05-service-detection.png)
+
+*Figure 5: Nmap service version detection (-sV) identifying RPC and SMB.*
 6. Full TCP Scan
 
 Scanned all TCP ports.
@@ -132,6 +156,10 @@ Additional Ports
 Port	Service
 7680	Windows Delivery Optimization
 49668	Dynamic RPC
+
+![Full TCP Scan](../Screenshots/Phase4/06-full-port-scan.png)
+
+*Figure 6: Complete TCP port scanning across all 65,535 ports against the target Windows machine.*
 7. Operating System Detection
 
 Performed OS fingerprinting.
@@ -143,6 +171,10 @@ sudo nmap -O 10.10.10.30
 Result
 
 Microsoft Windows 11 detected
+
+![Operating System Detection](../Screenshots/Phase4/07-os-detection.png)
+
+*Figure 7: Nmap OS detection scans accurately identifying the victim system as Windows 11.*
 8. Aggressive Scan
 
 Performed comprehensive reconnaissance.
@@ -161,6 +193,10 @@ SMB Security Mode
 SMB Signing
 Clock Information
 Traceroute
+
+![Aggressive Scan](../Screenshots/Phase4/08-aggressive-scan.png)
+
+*Figure 8: Comprehensive aggressive scan (-A) detailing full reconnaissance results.*
 Reconnaissance Summary
 Windows Endpoint
 Property	Value

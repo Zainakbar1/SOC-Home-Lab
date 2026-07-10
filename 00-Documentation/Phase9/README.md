@@ -52,8 +52,8 @@ The SOC Home Lab simulates a production Security Operations Center (SOC) capable
                         │
         ┌───────────────┼───────────────┐
         │               │               │
- Ubuntu SOC         Kali Linux      Windows 11
-10.10.10.10        10.10.10.20      10.10.10.30
+   Ubuntu SOC         Kali Linux        Windows 11
+   10.10.10.10        10.10.10.20       10.10.10.30
         │               │               │
         └────── Host-Only SOC Network ──┘
 ```

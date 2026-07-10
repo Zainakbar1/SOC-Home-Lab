@@ -29,8 +29,8 @@ The network was designed to achieve the following objectives:
         ┌────────────────────┼────────────────────┐
         │                    │                    │
         │                    │                    │
- Ubuntu-SOC             Kali-SOC            Windows-SOC
-10.10.10.10           10.10.10.20         10.10.10.30
+   Ubuntu-SOC             Kali-SOC            Windows-SOC
+   10.10.10.10          10.10.10.20         10.10.10.30
         │                    │                    │
         └──────── Host-Only SOC Network ──────────┘
 ```

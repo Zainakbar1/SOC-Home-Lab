@@ -19,8 +19,7 @@ The objective of this phase was to prepare the virtualization infrastructure for
 
 ---
 
-📷 **Screenshot Placeholder**  
-> VMware Workstation Library (../Screenshots/Phase0/00 - vmware-library.png)
+![VMware Workstation Library](../Screenshots/Phase0/00-vmware-library.png)
 
 *Figure 1: VMware Workstation Pro displaying the virtual machines created for the SOC Home Lab.*
 
@@ -43,8 +42,7 @@ The objective of this phase was to prepare the virtualization infrastructure for
 | Disk | 80 GB |
 | Network | NAT + Host-only |
 
-📷 **Screenshot Placeholder**  
-> Ubuntu VM Settings (../Screenshots/Phase0/01 - ubuntu-vm-settings.png)
+![Ubuntu VM Settings](../Screenshots/Phase0/01-ubuntu-vm-settings.png)
 
 *Figure 2: VMware Workstation configuration for the Ubuntu-SOC virtual machine.*
 
@@ -66,8 +64,7 @@ The objective of this phase was to prepare the virtualization infrastructure for
 | Disk | 64 GB |
 | Network | NAT + Host-only |
 
-📷 **Screenshot Placeholder**  
-> Windows VM Settings (../Screenshots/Phase0/02 - windows-vm-settings.png)
+![Windows VM Settings](../Screenshots/Phase0/02-windows-vm-settings.png)
 
 *Figure 3: VMware Workstation configuration for the Windows-SOC virtual machine.*
 
@@ -89,8 +86,7 @@ The objective of this phase was to prepare the virtualization infrastructure for
 | Disk | 40 GB |
 | Network | NAT + Host-only |
 
-📷 **Screenshot Placeholder**  
-> Kali VM Settings (../Screenshots/Phase0/03 - kali-vm-settings.png)
+![Kali VM Settings](../Screenshots/Phase0/03-kali-vm-settings.png)
 
 *Figure 4: VMware Workstation configuration for the Kali-SOC virtual machine.*
 
@@ -114,8 +110,7 @@ Two virtual network adapters were configured for each virtual machine:
 | Kali-SOC | 10.10.10.20/24 |
 | Windows-SOC | 10.10.10.30/24 |
 
-📷 **Screenshot Placeholder**  
-> VMware Virtual Network Editor (../Screenshots/Phase0/04 - vmware-virtual-network-editor.png)
+![VMware Virtual Network Editor](../Screenshots/Phase0/04-vmware-virtual-network-editor.png)
 
 *Figure 5: VMware Virtual Network Editor configured with VMnet1 (Host-only) using the 10.10.10.0/24 subnet and VMnet8 (NAT) for Internet connectivity.*
 

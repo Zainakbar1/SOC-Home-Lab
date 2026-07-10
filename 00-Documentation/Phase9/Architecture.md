@@ -16,8 +16,8 @@ This document describes the architecture of the SOC Home Lab, including the virt
         ┌────────────────────┼────────────────────┐
         │                    │                    │
         │                    │                    │
-  Ubuntu SOC             Kali Linux          Windows 11
-  10.10.10.10            10.10.10.20         10.10.10.30
+   Ubuntu SOC            Kali Linux          Windows 11
+   10.10.10.10          10.10.10.20         10.10.10.30
         │                    │                    │
         └────────── Host-Only SOC Network ───────┘
 ```
