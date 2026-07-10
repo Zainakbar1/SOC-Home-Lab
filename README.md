@@ -31,17 +31,17 @@ The goal is to create a complete SOC analyst portfolio demonstrating both offens
 
 | Phase | Status |
 |---------|--------|
-| Phase 0 – Infrastructure | ✅ Complete |
-| Phase 1 – Network Configuration | ✅ Complete |
-| Phase 2 – Splunk Enterprise | ✅ Complete |
-| Phase 3 – Windows Logging & Sysmon | ✅ Complete |
-| Phase 4 – Kali Linux | ✅ Complete |
-| Phase 5 – Log Validation | ✅ Complete |
-| Phase 6 – Reconnaissance & SMB Enumeration | ✅ Complete |
-| Phase 7 – Credential Access & Remote Execution | ✅ Complete |
-| Phase 8 – Persistence & Privilege Escalation | ✅ Complete |
-| Phase 9 – Detection Engineering & Threat Hunting | ✅ Complete |
-| Phase 10 – Incident Response & Final Portfolio | ✅ Complete |
+| [Phase 0 – Infrastructure](00-Documentation/Phase0/README.md) | ✅ Complete |
+| [Phase 1 – Network Configuration](00-Documentation/Phase1/README.md) | ✅ Complete |
+| [Phase 2 – Splunk Enterprise](00-Documentation/Phase2/README.md) | ✅ Complete |
+| [Phase 3 – Windows Logging & Sysmon](00-Documentation/Phase3/README.md) | ✅ Complete |
+| [Phase 4 – Kali Linux](00-Documentation/Phase4/README.md) | ✅ Complete |
+| [Phase 5 – Log Validation](00-Documentation/Phase5/README.md) | ✅ Complete |
+| [Phase 6 – Reconnaissance & SMB Enumeration](00-Documentation/Phase6/README.md) | ✅ Complete |
+| [Phase 7 – Credential Access & Remote Execution](00-Documentation/Phase7/README.md) | ✅ Complete |
+| [Phase 8 – Persistence & Privilege Escalation](00-Documentation/Phase8/README.md) | ✅ Complete |
+| [Phase 9 – Detection Engineering & Threat Hunting](00-Documentation/Phase9/README.md) | ✅ Complete |
+| [Phase 10 – Incident Response & Final Portfolio](07-Incident-Reports/LessonsLearned/README.md) | ✅ Complete |
 
 **Overall Progress:** **100%**
 
@@ -262,8 +262,14 @@ SOC-LAB/
 
 ## Incident Response
 
-- IR-001 – Nmap Reconnaissance
-- IR-002 – SMB Enumeration
+- [IR-001 – Nmap Reconnaissance](07-Incident-Reports/IR-001-Nmap-Reconnaissance.md)
+- [IR-002 – SMB Enumeration](07-Incident-Reports/IR-002-SMB-Enumeration.md)
+- [IR-003 – PsExec Lateral Movement](07-Incident-Reports/IR-003-PsExec-LateralMovement.md)
+- [IR-004 – Complete Attack Timeline](07-Incident-Reports/IR-004-Complete-Attack-Timeline.md)
+- [IR-005 – Threat Hunting Summary](07-Incident-Reports/IR-005-Threat-Hunting-Summary.md)
+- [IR-006 – SMB Lateral Movement](07-Incident-Reports/IR-006-SMB-LateralMovement.md)
+- [IR-007 – PsExec Investigation](07-Incident-Reports/IR-007-PsExec-Investigation.md)
+- [IR-008 – Final Incident Report](07-Incident-Reports/IR-008-Final-Incident-Report.md)
 
 ## MITRE ATT&CK Mapping
 
@@ -293,18 +299,45 @@ Snapshots are created before major configuration changes to provide reliable rol
 
 ---
 
-# Documentation
+# 📖 Documentation Directory & Quick Links
 
-Every phase includes:
+All phases and components of this project are thoroughly documented. You can access the specific documentation indices, phase guides, configurations, and incident reports directly using the links below:
 
-- Detailed README
-- Commands Executed
-- Technical Explanations
-- Screenshots
-- Detection Queries
-- MITRE Mapping
-- Incident Reports
-- Lessons Learned
+### 🗺️ Documentation Index
+* **[Comprehensive Documentation Index](00-Documentation/README.md)** - General overview of lab network architecture, setup phases, and specifications.
+
+### ⚙️ Phase-by-Phase Walkthroughs
+| Phase | Documentation Link | Description |
+| :--- | :--- | :--- |
+| **Phase 0** | 🛠️ **[Infrastructure Setup](00-Documentation/Phase0/README.md)** | VMware Workstation Pro installation, VM creation (Ubuntu, Windows 11, Kali), and base snapshot strategy. |
+| **Phase 1** | 🔌 **[Network Configuration](00-Documentation/Phase1/README.md)** | Host-only isolated networking (10.10.10.0/24), firewall configuration, and connectivity verification. |
+| **Phase 2** | 📊 **[Splunk Installation & Config](00-Documentation/Phase2/README.md)** | Installing Splunk Enterprise on Ubuntu, setting up receiving indexers, and creating custom indexes. |
+| **Phase 3** | 🎛️ **[Windows Logging & Sysmon](00-Documentation/Phase3/README.md)** | Installing Universal Forwarder and Sysmon on Win 11, configuring forwarding inputs. |
+| **Phase 4** | 🕵️ **[Kali Linux & Reconnaissance](00-Documentation/Phase4/README.md)** | Setting up the Kali attacker machine and executing initial Nmap scans. |
+| **Phase 5** | ✅ **[Log Validation & TAs](00-Documentation/Phase5/README.md)** | Configuring Splunk Technology Add-ons (TAs) to parse Windows/Sysmon logs. |
+| **Phase 6** | 🔍 **[SMB Reconnaissance & Enumeration](00-Documentation/Phase6/README.md)** | Adversary discovery techniques, SMB share scanning, NetExec usage, and PsExec execution attempts. |
+| **Phase 7** | 🔓 **[Credential Access & Remote Execution](00-Documentation/Phase7/README.md)** | SMB brute force/password spraying via Hydra, and remote code execution with Impacket-PsExec. |
+| **Phase 8** | ☠️ **[Persistence & Privilege Escalation](00-Documentation/Phase8/README.md)** | Simulating Registry run keys, scheduled tasks, privilege escalation, and active threat hunting. |
+| **Phase 9** | 🎯 **[Detection Engineering & Splunk](00-Documentation/Phase9/README.md)** | Writing custom Splunk SPL detection rules for each simulated attack technique. |
+| **Phase 10** | 📝 **[Lessons Learned & Incident Reports](07-Incident-Reports/LessonsLearned/README.md)** | Final incident response lifecycle summary, post-incident reviews, and lessons learned. |
+
+### 🛠️ Configuration & Core Component Readmes
+* 💻 **[Sysmon Configuration](04-Sysmon/README.md)** - Details on custom Sysmon XML schema and event definitions.
+* 📦 **[Splunk Apps Config](03-Splunk/Apps/README.md)** - Installed apps, addons, and indexes.
+* ⚙️ **[Splunk System Configurations](03-Splunk/Configurations/README.md)** - Splunk config files (`inputs.conf`, `outputs.conf`, `server.conf`).
+* 📊 **[Splunk Dashboards](03-Splunk/Dashboards/README.md)** - Visualizations, security monitoring dashboards, and XML exports.
+* 🗺️ **[MITRE ATT&CK Mapping Reference](10-MITRE/README.md)** - Full tactic & technique coverage tracker.
+* 💾 **[VMware Snapshot Guide](Snapshots/README.md)** - Lab rollback points and snapshot topology.
+* 🔧 **[Splunk Scripts & Tools](09-Tools/Splunk/README.md)** - Helper scripts and log generation utilities.
+
+### ⚔️ Adversary Simulations & Detections
+* 🏹 **[Phase 8 Offensive Playbook](05-Attacks/Phase8/README.md)** - Complete persistence, discovery, and escalation details.
+  * 📡 **[Discovery Simulations](05-Attacks/Phase8/Discovery/README.md)**
+  * 📌 **[Persistence Simulations](05-Attacks/Phase8/Persistence/README.md)** (See also **[Phase 7 Persistence](05-Attacks/Phase7/Persistence/README.md)**)
+  * 🎯 **[Threat Hunting Strategies](05-Attacks/Phase8/ThreatHunting/README.md)**
+  * ⏳ **[Attack Timeline](05-Attacks/Phase8/Timeline/README.md)**
+* 🛡️ **[Detection Rules Index](06-Detections/README.md)** - Core detection queries and alerts.
+  * 🔔 **[Phase 8 Detections](06-Detections/Phase8/README.md)**
 
 ---
 

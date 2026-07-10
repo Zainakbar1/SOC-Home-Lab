@@ -57,6 +57,9 @@ Navigate to the detailed documentation for each phase using the links below:
     Post-compromise investigation following the NIST Incident Response Lifecycle. Splunk SPL searches to identify persistence (registry run keys, scheduled tasks), reconstruct the attack timeline, identify indicators of compromise (IOCs), and map to MITRE ATT&CK.
 *   **[Phase 9 – Portfolio Documentation & Finalization](Phase9/README.md)**  
     Reviewing repository organization, validating detection rules, collecting incident reports, preparing resume descriptions, and finalizing the portfolio.
+    *   *Sub-documents:* [Architecture](Phase9/Architecture.md) | [Installation](Phase9/Installation.md) | [Lessons Learned](Phase9/LessonsLearned.md) | [Network](Phase9/Network.md) | [Screenshots](Phase9/Screenshots.md) | [Troubleshooting](Phase9/Troubleshooting.md)
+*   **[Phase 10 – Lessons Learned & Incident Reports](../07-Incident-Reports/LessonsLearned/README.md)**  
+    Final incident response lifecycle summary, post-incident reviews, containment and recovery steps, and future improvement plans.
 
 ---
 
